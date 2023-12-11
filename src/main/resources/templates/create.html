@@ -32,11 +32,11 @@
             </td>
         </tr>
         <br>
-        <input th:type="checkbox" th:id="adminCheckbox" th:checked="${#sets.contains(user.roles, 'ROLE_ADMIN')}"/>
-        <label th:for="adminCheckbox">Admin</label>
+        <input th:type="checkbox" th:id="ADMIN" th:name="adminRole" th:value="ROLE_ADMIN" th:checked="${user.roles.contains('ROLE_ADMIN')}" />
+        <label th:for="ADMIN">Admin</label>
+        <input th:type="checkbox" th:id="USER" th:name="userRole" th:value="ROLE_USER" th:checked="${user.roles.contains('ROLE_USER')}" />
+        <label th:for="USER">User</label>
 
-        <input th:type="checkbox" th:id="userCheckbox" th:checked="${#sets.contains(user.roles, 'ROLE_USER')}"/>
-        <label th:for="userCheckbox">User</label>
 
 
         <tr>

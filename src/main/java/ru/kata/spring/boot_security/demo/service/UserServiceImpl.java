@@ -33,13 +33,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public void addUser(User user, String roleAdmin, String roleUser) {
 
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public User getUserId(long id) {
         return userDao.getUserId(id);
     }
@@ -72,6 +72,22 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional
     public void updateUser(User user) {
+        Set<Role> roles = new HashSet<>();
+
+        if (user.getRoles().stream().anyMatch(role -> "ROLE_ADMIN".equals(role.getName()))) {
+            roles.add(roleService.getByName("ROLE_ADMIN"));
+        }
+
+        if (user.getRoles().stream().anyMatch(role -> "ROLE_USER".equals(role.getName()))) {
+            roles.add(roleService.getByName("ROLE_USER"));
+        }
+
+        if (roles.isEmpty()) {
+            roles.add(roleService.getByName("ROLE_USER"));
+        }
+
+        user.setRoles(roles);
+
         userDao.updateUser(user);
     }
 

@@ -23,7 +23,7 @@ public class User implements Serializable, UserDetails {
 
     @Column(name = "password")
     private String password;
-    @Column(name = "email")
+
     private String email;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -129,6 +129,15 @@ public class User implements Serializable, UserDetails {
     public void addRole(Role role) {
         this.roles.add(role);
     }
+
+    public boolean isAdmin() {
+        return roles.stream().anyMatch(role -> "ROLE_ADMIN".equals(role.getName()));
+    }
+
+    public boolean isUser() {
+        return roles.stream().anyMatch(role -> "ROLE_USER".equals(role.getName()));
+    }
+
 
     @Override
     public String toString() {
