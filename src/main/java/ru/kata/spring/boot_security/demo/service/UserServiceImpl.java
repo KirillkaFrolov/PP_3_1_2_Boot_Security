@@ -27,19 +27,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public void addUser(User user, String roleAdmin, String roleUser) {
 
     }
 
     @Override
-    @Transactional
     public User getUserId(long id) {
         return userDao.getUserId(id);
     }
@@ -98,13 +96,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public User getByName(String username) {
         return userDao.getByName(username);
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.getByName(username);
         return user;
