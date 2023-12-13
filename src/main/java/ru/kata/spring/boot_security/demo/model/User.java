@@ -101,14 +101,6 @@ public class User implements Serializable, UserDetails {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getEmail() {
         return email;
@@ -126,13 +118,6 @@ public class User implements Serializable, UserDetails {
         this.roles = roles;
     }
 
-    public void addRole(Role role) {
-        this.roles.add(role);
-    }
-
-    public boolean isAdmin() {
-        return roles.stream().anyMatch(role -> "ROLE_ADMIN".equals(role.getName()));
-    }
 
     public boolean isUser() {
         return roles.stream().anyMatch(role -> "ROLE_USER".equals(role.getName()));

@@ -33,7 +33,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = false)
     public void add(Role role) {
         roleDao.add(role);
     }
