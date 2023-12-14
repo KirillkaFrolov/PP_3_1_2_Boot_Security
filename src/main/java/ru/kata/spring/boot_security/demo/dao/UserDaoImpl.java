@@ -27,6 +27,9 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    public UserDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public void updateUser(User user) {

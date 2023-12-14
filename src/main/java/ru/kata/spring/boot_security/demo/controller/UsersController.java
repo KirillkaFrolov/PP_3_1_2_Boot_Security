@@ -12,12 +12,6 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 public class UsersController {
 
-    private final UserService userService;
-
-    @Autowired
-    public UsersController(UserService userService) {
-        this.userService = userService;
-    }
 
 
     @GetMapping("/user")
