@@ -17,8 +17,8 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    final UserDao userDao;
-    private RoleService roleService;
+    private final UserDao userDao;
+    private final RoleService roleService;
 
 
     public UserServiceImpl(UserDao userDao, RoleService roleService) {
